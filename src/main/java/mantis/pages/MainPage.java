@@ -7,8 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage {
-    private final WebDriver driver;
-    private final WebDriverWait wait;
 
     @FindBy(css = "span.user-info")
     private WebElement userName;
@@ -16,9 +14,11 @@ public class MainPage {
     @FindBy(css = "a[href='/mantisbt/view_all_bug_page.php']")
     private WebElement viewIssuesPageButton;
 
+    @FindBy(xpath = "//a[contains(text(), 'Report Issue')]")
+    private WebElement reportIssueButton;
+
     public MainPage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, 30, 500);
+        WebDriverWait wait = new WebDriverWait(driver, 30, 500);
         PageFactory.initElements(driver, this);
     }
 
@@ -28,5 +28,9 @@ public class MainPage {
 
     public void goToViewIssuesPage() {
         viewIssuesPageButton.click();
+    }
+
+    public void goToReportIssuesPage() {
+        reportIssueButton.click();
     }
 }
