@@ -19,15 +19,18 @@ public class AddDeleteIssueTest extends BaseTest {
         summary = "TestSummary" + tmstmp;
         description = "Testdescription";
         mantisSite = new MantisSite(driver);
+
         mantisSite.login("admin", "admin20");
         mantisSite.getMainPage().goToReportIssuesPage();
         mantisSite.getReportPage().addIssue(summary, description);
+
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(mantisSite.getViewIssuesPage().isIssuePresent(summary));
-        softAssertions.assertAll();
+
         int issueId = mantisSite.getViewIssuesPage().getIssueId(summary);
         mantisSite.getViewIssuePage().viewIssue(issueId);
         mantisSite.getViewIssuePage().deleteIssue();
+
         softAssertions.assertThat(!mantisSite.getViewIssuesPage().isIssuePresent(summary));
         softAssertions.assertAll();
     }
