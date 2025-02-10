@@ -11,8 +11,7 @@ public class ViewIssuesTest extends BaseTest{
     @Test
     public void fiftyRecordsTest() {
         mantisSite = new MantisSite(driver);
-        mantisSite.getLoginPage().login("admin");
-        mantisSite.getPasswordPage().login("admin20");
+        mantisSite.login("admin", "admin20");
         mantisSite.getMainPage().goToViewIssuesPage();
         int issuesCount = mantisSite.getViewIssuesPage().countIssues();
         Assertions.assertEquals(50, issuesCount);

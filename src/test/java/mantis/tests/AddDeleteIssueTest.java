@@ -19,8 +19,7 @@ public class AddDeleteIssueTest extends BaseTest {
         summary = "TestSummary" + tmstmp;
         description = "Testdescription";
         mantisSite = new MantisSite(driver);
-        mantisSite.getLoginPage().login("admin");
-        mantisSite.getPasswordPage().login("admin20");
+        mantisSite.login("admin", "admin20");
         mantisSite.getMainPage().goToReportIssuesPage();
         mantisSite.getReportPage().addIssue(summary, description);
         SoftAssertions softAssertions = new SoftAssertions();
@@ -29,7 +28,7 @@ public class AddDeleteIssueTest extends BaseTest {
         int issueId = mantisSite.getViewIssuesPage().getIssueId(summary);
         mantisSite.getViewIssuePage().viewIssue(issueId);
         mantisSite.getViewIssuePage().deleteIssue();
-        Assertions.assertFalse(mantisSite.getViewIssuesPage().isIssuePresent(summary), "Test issue is not deleted, still found");
-
+        softAssertions.assertThat(!mantisSite.getViewIssuesPage().isIssuePresent(summary));
+        softAssertions.assertAll();
     }
 }

@@ -25,7 +25,7 @@ public class ViewIssuePage {
     }
 
     public void viewIssue(int issueId) {
-        this.driver.get("https://academ-it.ru/mantisbt/view.php?id=" + String.valueOf(issueId));
+        this.driver.get("https://academ-it.ru/mantisbt/view.php?id=" + issueId);
     }
 
     public void deleteIssue() {
